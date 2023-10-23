@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nextjs 13 - Dashboard
 
-## Getting Started
+# Instalação
 
-First, run the development server:
+Vamos instalar o Nextjs, Prisma ORM e o Next-Auth
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm install prisma --save-dev
+npx prisma init
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O comando **npx prisma init** cria automaticamente o arquivo .env
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Adicione o arquivo .env no gitignore
+- Configure a URL do seu banco de dados no arquivo .env
+- Trocar o provider do banco de dados no arquivo schema.prisma
 
-## Learn More
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+O comando **generate** e **db push** faz basicamente as mesma coisa, um cria e outro atualiza caso já criado.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install next-auth
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## No final, o package.json ficará assim
 
-## Deploy on Vercel
+```json
+{
+    "name": "zz-app",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    },
+    "dependencies": {
+      "@prisma/client": "^5.4.2",
+      "next": "13.5.6",
+      "next-auth": "^4.24.3",
+      "react": "^18",
+      "react-dom": "^18"
+    },
+    "devDependencies": {
+      "@types/node": "^20",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "eslint": "^8",
+      "eslint-config-next": "13.5.6",
+      "prisma": "^5.4.2",
+      "typescript": "^5"
+    }
+  }
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Limpar arquivos gerados do Nextjs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Apague os CSS gerados e os arquivo tsx, apague as imagens também e os imports inutilizáveis.
+
+# Executar a aplicação
+
+```bash
+    npm run dev
+```
