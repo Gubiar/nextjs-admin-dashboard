@@ -1,13 +1,16 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="pt-BR">
-      <body >{children}</body>
-    </html>
-  )
+import { Metadata } from 'next'
+ 
+export const metadata: Metadata = {
+  title: 'ZZ Tech - Web app',
+  description: 'Exemplo de aplicação ',
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    return (
+        <html lang="pt-BR">
+            <body>{children}</body>
+        </html>
+    );
 }
