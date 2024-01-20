@@ -11,6 +11,7 @@ type Inputs = {
     email: string;
     password: string;
     confirmPassword: string;
+    isLogin: boolean
 };
 
 export default function AuthPage() {
@@ -25,13 +26,28 @@ export default function AuthPage() {
     } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        console.log(data);
+        // console.log(data);
+        
+        let body = {};
+        if(!isLogin){
+            body = {
+                isLogin,
+                email: data.email,
+                password: data.password,
+                confirmPassword: data.confirmPassword,
+                name: data.name,
+                redirect: false,
+            };
+        } else {
+            body = {
+                isLogin,
+                email: data.email,
+                password: data.password,
+                redirect: false,
+            };
+        }
 
-        const result = await signIn('credentials', {
-            email: data.email,
-            password: data.password,
-            redirect: false,
-        });
+        const result = await signIn('credentials', body);
 
         if(result?.ok) {
             router.replace("/admin")
