@@ -2,8 +2,8 @@ export interface DbUserProps {
     success: string
     message: string
     id: number
-    user_name: string
-    user_email: string
+    name: string
+    email: string
     token: string
 }
 
